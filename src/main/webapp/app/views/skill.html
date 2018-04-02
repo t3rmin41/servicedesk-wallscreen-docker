@@ -1,0 +1,31 @@
+<div class="row" data-ng-controller="SkillController">
+  <div class="form-group">
+    <input type="text" class="form-control" id="skillsearch" placeholder="Search skills" data-ng-model="skillsearch" />
+  </div>
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>Title</th>
+        <th>Client</th>
+        <th>Ignore staffing</th>
+        <th>Split skill</th>
+        <th>VDN</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="skill in skills | filter:skillsearch">
+        <td>{{skill.skillName}}</td>
+        <td>{{skill.clientName}}</td>
+        <td>{{skill.ignoreStaffing}}</td>
+        <td>{{skill.splitSkill}}</td>
+        <td>{{skill.vdn}}</td>
+        <td>
+            <button class="btn btn-small" ng-click="editSkill(skill)">Edit</button>
+            <button class="btn btn-small" ng-click="deleteSkill(skill)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <button ng-click="addSkill()" class="btn btn-primary">Add Skill</button>
+  </div>
+</div>

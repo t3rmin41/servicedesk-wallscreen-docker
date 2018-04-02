@@ -1,0 +1,29 @@
+<div class="row" data-ng-controller="ClockController">
+  <div class="form-group">
+    <input type="text" class="form-control" id="clientsearch" placeholder="Search clocks" data-ng-model="clocksearch" />
+  </div>
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>Title</th>
+        <th>Order</th>
+        <th>GMT</th>
+        <th>Associated screen</th>
+        <th>Actions</th>
+      </tr>
+      <tr data-ng-repeat="clock in clocks | filter:clocksearch">
+        <td>{{clock.clockName}}</td>
+        <td>{{clock.clockOrder}}</td>
+        <td>{{clock.clockGMT}}</td>
+        <td>{{clock.screen.title}}</td>
+        <td>
+            <button class="btn btn-small" ng-click="editClock(clock)">Edit</button>
+            <button class="btn btn-small" ng-click="deleteClock(clock)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <button ng-click="addClock()" class="btn btn-primary">Add Clock</button>
+  </div>
+</div>

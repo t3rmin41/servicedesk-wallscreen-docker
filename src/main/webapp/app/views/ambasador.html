@@ -1,0 +1,31 @@
+<div class="row" data-ng-controller="AmbasadorController">
+  <div class="form-group">
+    <input type="text" class="form-control" id="ambasadorsearch" placeholder="Search ambasadors" data-ng-model="ambasadorsearch" />
+  </div>
+  <table id="ambasadors" class="table table-striped table-condensed table-hover">
+    <thead>
+      <tr>
+        <th ng-repeat="(headerId, headerName) in tableHeader" ng-click="changeSorting(headerId)">{{ headerName }} <i ng-class="selectedColumn(headerId)"></i>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-ng-repeat="ambasador in ambasadors | orderBy:sort.sortingOrder:sort.reverse | filter:ambasadorsearch" >
+        <td>{{ambasador.name}}</td>
+        <td>{{ambasador.avayaID}}</td>
+        <td>{{ambasador.phoneID}}</td>
+        <td>{{ambasador.screen.title}}</td>
+        <td>{{ambasador.ENmember}}</td>
+        <td>{{ambasador.ENSME}}</td>
+        <td>{{ambasador.Lowerskill}}</td>
+        <td>{{ambasador.hideAccount}}</td>
+        <td>
+            <button class="btn btn-small" ng-click="editAmbasador(ambasador)">Edit</button>
+            <button class="btn btn-small" ng-click="deleteAmbasador(ambasador)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <button ng-click="addAmbasador()" class="btn btn-primary">Add Ambasador</button>
+  </div>
+</div>

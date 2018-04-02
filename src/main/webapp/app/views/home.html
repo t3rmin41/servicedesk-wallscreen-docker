@@ -1,0 +1,46 @@
+<div ng-show="authenticated" class="container">
+    <div data-ng-controller="HomeController" class="row">
+      <div class="row">
+        <div class="col-md-12">
+            <h3>Servicedesk wallscreen application</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+             <div class="alert alert-danger" ng-show="$root.httpErrorMessage"> {{ $root.httpErrorMessage }} </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ user.firstName }} {{ user.lastName }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="logout()">Logout</a></li>
+                </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-2" class="form-control">
+        <label for="txtName">Chosen screen:</label>
+        <select class="form-control"
+                ng-model="chosenScreen"
+                ng-change="updateChosenScreen()"
+                ng-options="screen.id as screen.title for screen in screens" >
+        </select>
+        </div>
+      </div>
+    </div>
+    <div ng-controller="TabsController" class="row">
+        <nav>
+        <ul class="nav nav-tabs">
+            <li ng-repeat="tab in tabs"><a href="#/" ng-click="setCurrentTab(tab.id)">{{ tab.title }}</a></li>
+        </ul>
+        </nav>
+        <div id="{{currentTab.id}}" class="tab-content">
+            <div class="tab-pane active" role="tabpanel">
+                <div ng-include src="templateUrl(currentTab.id)"></div>
+            </div>
+        </div>
+    </div>
+</div>

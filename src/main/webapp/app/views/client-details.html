@@ -1,0 +1,91 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ modalTitle }}</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-xs-6" ng-style="showSkillTable === false ? {'width' : '100%' } : { 'width' : '50%'}" >
+      <div class="alert alert-danger" ng-show="errorMessage">{{ errorMessage }}</div>
+
+      <div class="form-group" ng-class="{ 'has-error' : errors['clientName'] }">
+        <label for="txtTitle">Title:</label>
+        <input type="text" id="txtTitle" class="form-control" ng-model="currentClient.clientName" />
+        <p class="help-block" ng-show="errors['clientName']">{{ errors['clientName'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : errors['abnSla'] }">
+        <label for="txtabnSla">Abandon SLA, %:</label>
+        <input type="text" id="txtabnSla" class="form-control" ng-model="currentClient.abnSla" />
+        <p class="help-block" ng-show="errors['abnSla']">{{ errors['abnSla'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : errors['aftSla'] }">
+        <label for="txtaftSla">Aftercall SLA, %:</label>
+        <input type="text" id="txtaftSla" class="form-control" ng-model="currentClient.aftSla" />
+        <p class="help-block" ng-show="errors['aftSla']">{{ errors['aftSla'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : errors['asaSla'] }">
+        <label for="txtasaSla">Average speed of answer SLA, %:</label>
+        <input type="text" id="txtasaSla" class="form-control" ng-model="currentClient.asaSla" />
+        <p class="help-block" ng-show="errors['asaSla']">{{ errors['asaSla'] }}</p>
+      </div>
+
+      <div class="form-group" ng-class="{ 'has-error' : errors['ttaSla'] }">
+        <label for="txtttaSla">Average talk time SLA, s:</label>
+        <input type="text" id="txtttaSla" class="form-control" ng-model="currentClient.ttaSla" />
+        <p class="help-block" ng-show="errors['ttaSla']">{{ errors['ttaSla'] }}</p>
+      </div>
+
+      <div class="row">
+      <div class="form-group col-xs-6"  ng-class="{ 'has-error' : errors['noPanel'] }">
+        <label for="chboxNoPanel">Hide from client panel:</label>
+        <input type="checkbox" id="chboxNoPanel" ng-model="currentClient.noPanel" />
+        <p class="help-block" ng-show="errors['noPanel']">{{ errors['noPanel'] }}</p>
+      </div>
+
+      <div class="form-group col-xs-6" ng-class="{ 'has-error' : errors['noSLA'] }">
+        <label for="chboxNoSLA">Hide from SLA carousel:</label>
+        <input type="checkbox" id="chboxNoSLA" ng-model="currentClient.noSLA" />
+        <p class="help-block" ng-show="errors['noSLA']">{{ errors['noSLA'] }}</p>
+      </div>
+      </div>
+
+      <div class="form-group">
+        <label for="screen">Screen</label>
+        <select name="screen" id="screen" class="form-control" ng-model="currentClient.screen.id"
+                ng-options="screen.id as screen.title for screen in screens">
+        </select>
+      </div>
+    </div>
+    <div ng-show="showSkillTable" class="col-xs-6">
+        <div class="form-group">
+          <label for="skillsearch">Client skills</label>
+          <input type="text" class="form-control" id="skillsearch" placeholder="Filter skills" data-ng-model="skillfilter" />
+        </div>
+          <table class="table client-skill-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Split skill</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="skill in currentClient.skills | filter:skillfilter">
+                <td>{{skill.skillName}}</td>
+                <td>{{skill.splitSkill}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-footer">
+  <div class="form-group">
+    <button class="btn btn-primary float-left"
+      ng-click="save(currentClient)">Save</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+  </div>
+</div>
+

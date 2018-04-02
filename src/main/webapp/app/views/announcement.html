@@ -1,0 +1,35 @@
+<div class="row" data-ng-controller="AnnouncementController">
+  <div class="form-group">
+    <input type="text" class="form-control" id="announcementsearch" placeholder="Search announcement" data-ng-model="announcementsearch" />
+  </div>
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>Text</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Type</th>
+        <th>Time</th>
+        <th>Owner</th>
+        <th>Associated screen</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="announcement in announcements | filter:announcementsearch">
+        <td>{{announcement.text}}</td>
+        <td>{{announcement.priority}}</td>
+        <td>{{announcement.viewStatus}}</td>
+        <td>{{announcement.type.title}}</td>
+        <td>{{announcement.time}}</td>
+        <td>{{announcement.owner.firstName}} {{announcement.owner.lastName}}</td>
+        <td>{{announcement.screen.title}}</td>
+        <td>
+            <button class="btn btn-small" ng-click="editAnnouncement(announcement)">Edit</button>
+            <button class="btn btn-small" ng-click="deleteAnnouncement(announcement)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+    <button ng-click="addAnnouncement()" class="btn btn-primary">Add Announcement</button>
+  </div>
+</div>

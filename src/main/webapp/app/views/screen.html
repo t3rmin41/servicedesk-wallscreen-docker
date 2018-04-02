@@ -1,0 +1,25 @@
+<div class="row" data-ng-controller="ScreenController">
+  <div class="form-group">
+    <input type="text" class="form-control" id="screensearch" placeholder="Search screens" data-ng-model="screensearch" />
+  </div>
+  <table class="table table-striped table-hover">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+      <tr ng-repeat="screen in screens | filter:screensearch">
+        <td>{{screen.id}}</td>
+        <td>{{screen.title}}</td>
+        <td>
+            <button class="btn btn-small" ng-click="editScreen(screen)">Edit</button>
+            <button class="btn btn-small" ng-click="deleteScreen(screen)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="form-group">
+      <button class="btn btn-primary" ng-click="addScreen()">Add screen</button>
+  </div>
+</div>

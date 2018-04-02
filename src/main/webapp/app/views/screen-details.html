@@ -1,0 +1,17 @@
+<div class="modal-header"><h4 class="modal-title">{{ modalTitle }}</h4></div>
+<div class="modal-body">
+
+    <div class="alert alert-danger" ng-show="errorMessage"> {{ errorMessage }} </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['title'] }">
+        <label for="txtName">Title:</label>
+        <input type="text" id="txtTitle" class="form-control" ng-model="currentScreen.title" />
+        <p class="help-block" ng-show="errors['title']"> {{ errors['title'] }} </p>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="save(currentScreen)">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

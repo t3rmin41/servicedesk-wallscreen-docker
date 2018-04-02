@@ -1,0 +1,46 @@
+<div class="modal-header"><h4 class="modal-title">{{ modalTitle }}</h4></div>
+<div class="modal-body">
+    
+    <div class="alert alert-danger" ng-show="errorMessage"> {{ errorMessage }} </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['skillName'] }">
+        <label for="txtTitle">Title:</label>
+        <input type="text" id="txtTitle" class="form-control" ng-model="currentSkill.skillName" />
+        <p class="help-block" ng-show="errors['skillName']"> {{ errors['skillName'] }} </p>
+    </div>
+    
+    <div class="form-group">
+        <label for="screen">Client:</label>
+        <select name="clientId" id="clientId" class="form-control" 
+                ng-model="selectedClient"
+                ng-options="client as client.clientName for client in clients" >
+        </select>
+    </div>
+    
+    <div class="row">
+    <div class="form-group col-lg-8" ng-class="{ 'has-error' : errors['ignoreStaffing'] }">
+        <label for="chboxIgnoreStaffing" class="col-lg-6" style="margin-left: -14px">Ignore staffing:</label>
+        <input type="checkbox" id="chboxIgnoreStaffing" class="col-lg-2" ng-model="currentSkill.ignoreStaffing" />
+        <p class="help-block" ng-show="errors['ignoreStaffing']"> {{ errors['ignoreStaffing'] }} </p>
+    </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['splitSkill'] }">
+        <label for="txtaftSla">Split skill:</label>
+        <input type="text" id="txtsplitSkill" class="form-control" ng-model="currentSkill.splitSkill" />
+        <p class="help-block" ng-show="errors['splitSkill']"> {{ errors['splitSkill'] }} </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['vdn'] }">
+        <label for="txtvdn">VDN:</label>
+        <input type="text" id="txtvdn" class="form-control" ng-model="currentSkill.vdn" />
+        <p class="help-block" ng-show="errors['vdn']"> {{ errors['vdn'] }} </p>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="save(currentSkill)">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

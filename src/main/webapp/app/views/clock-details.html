@@ -1,0 +1,37 @@
+<div class="modal-header"><h4 class="modal-title">{{ modalTitle }}</h4></div>
+<div class="modal-body">
+
+    <div class="alert alert-danger" ng-show="errorMessage"> {{ errorMessage }} </div>
+
+    <div class="form-group">
+        <label for="txtTitle">Title:</label>
+        <input type="text" id="txtTitle" class="form-control" ng-model="currentClock.clockName" />
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['clockOrder'] }">
+        <label for="txtOrder">Order:</label>
+        <input type="text" id="txtOrder" class="form-control" ng-model="currentClock.clockOrder" />
+        <p class="help-block" ng-show="errors['clockOrder']"> {{ errors['clockOrder'] }} </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['clockGMT'] }">
+        <label for="txtGMT">GMT:</label>
+        <input type="number" id="txtGMT" class="form-control" min="0" max="24" step="0.5" ng-model="currentClock.clockGMT" />
+        <p class="help-block" ng-show="errors['clockGMT']"> {{ errors['clockGMT'] }} </p>
+    </div>
+
+    <div class="form-group">
+        <label for="screen">Screen</label>
+        <select name="screen" id="screen" class="form-control" 
+                ng-model="currentClock.screen.id"
+                ng-options="screen.id as screen.title for screen in screens" >
+        </select>
+    </div>
+    
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="save(currentClock)">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

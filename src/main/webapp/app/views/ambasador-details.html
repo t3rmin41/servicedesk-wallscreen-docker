@@ -1,0 +1,65 @@
+<div class="modal-header"><h4 class="modal-title">{{ modalTitle }}</h4></div>
+<div class="modal-body">
+    
+    <div class="alert alert-danger" ng-show="errorMessage"> {{ errorMessage }} </div>
+    
+    <div class="form-group" >
+        <label for="txtTitle">Name:</label>
+        <input type="text" id="txtTitle" class="form-control" ng-model="currentAmbasador.name" />
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['avayaID'] }">
+        <label for="txtAvayaId">Avaya ID:</label>
+        <input type="text" id="txtAvayaId" class="form-control" ng-model="currentAmbasador.avayaID" />
+        <p class="help-block" ng-show="errors['avayaID']"> {{ errors['avayaID'] }} </p>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['phoneID'] }">
+        <label for="txtPhoneId">Phone ID:</label>
+        <input type="text" id="txtPhoneId" class="form-control" ng-model="currentAmbasador.phoneID" />
+        <p class="help-block" ng-show="errors['phoneID']"> {{ errors['phoneID'] }} </p>
+    </div>
+
+    <div class="row"> <!-- xs-6 means 'extra small column size 6' and 6 = 4 + 2 of inner columns -->
+    <div class="form-group col-xs-6" ng-class="{ 'has-error' : errors['ENmember'] }">
+        <label for="chboxEnMember" class="col-xs-4">EN member:</label>
+        <input type="checkbox" id="chboxEnMember" class="col-xs-2" ng-model="currentAmbasador.ENmember" />
+        <p class="help-block" ng-show="errors['ENmember']"> {{ errors['ENmember'] }} </p>
+    </div>
+    
+    <div class="form-group col-xs-6" ng-class="{ 'has-error' : errors['ENSME'] }">
+        <label for="chboxENSME" class="col-xs-4">ENSme:</label>
+        <input type="checkbox" id="chboxENSME" class="col-xs-2" ng-model="currentAmbasador.ENSME" />
+        <p class="help-block" ng-show="errors['ENSME']"> {{ errors['ENSME'] }} </p>
+    </div>
+    </div>
+    
+    <div class="row">
+    <div class="form-group col-xs-6" ng-class="{ 'has-error' : errors['Lowerskill'] }">
+        <label for="chboxLowerskill" class="col-xs-4">Lowerskill:</label>
+        <input type="checkbox" id="chboxLowerskill" class="col-xs-2" ng-model="currentAmbasador.Lowerskill" />
+        <p class="help-block" ng-show="errors['Lowerskill']"> {{ errors['Lowerskill'] }} </p>
+    </div>
+
+    <div class="form-group col-xs-6" ng-class="{ 'has-error' : errors['hideAccount'] }">
+        <label for="chboxHideAccount" class="col-xs-4">Hide account:</label>
+        <input type="checkbox" id="chboxHideAccount" class="col-xs-2" ng-model="currentAmbasador.hideAccount" />
+        <p class="help-block" ng-show="errors['hideAccount']"> {{ errors['hideAccount'] }} </p>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label for="screen">Screen</label>
+        <select name="screen" id="screen" class="form-control" 
+                ng-model="currentAmbasador.screen.id"
+                ng-options="screen.id as screen.title for screen in screens" >
+        </select>
+    </div>
+    
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="save(currentAmbasador)">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

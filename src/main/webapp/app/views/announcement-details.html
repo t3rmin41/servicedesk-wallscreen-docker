@@ -1,0 +1,64 @@
+<div class="modal-header"><h4 class="modal-title">{{ modalTitle }}</h4></div>
+<div class="modal-body">
+    
+    <div class="alert alert-danger" ng-show="errorMessage"> {{ errorMessage }} </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['text'] }">
+        <label for="txtText">Text:</label>
+        <input type="text" id="txtText" class="form-control" ng-model="currentAnnouncement.text" />
+        <p class="help-block" ng-show="errors['text']"> {{ errors['text'] }} </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['priority'] }">
+        <label for="selectPriority">Priority:</label>
+        <select name="priority" id="selectPriority" class="form-control" ng-model="currentAnnouncement.priority">
+          <option value=""></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <p class="help-block" ng-show="errors['priority']"> {{ errors['priority'] }} </p>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error' : errors['status'] }">
+        <label for="selectStatus">Status:</label>
+        <select name="status" id="selectStatus" class="form-control" ng-model="currentAnnouncement.status" >
+             <option value="1">Active</option>
+             <option value="0">Inactive</option>
+        </select>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-error' : errors['type'] }">
+        <label for="type">Type:</label>
+        <select name="type" id="type" class="form-control" 
+                ng-model="currentAnnouncement.type.code"
+                ng-change="checkSelectedType()"
+                ng-options="type.code as type.title for type in types" >
+        </select>
+        <p class="help-block" ng-show="errors['type']"> {{ errors['type'] }} </p>
+    </div>
+    
+    <div ng-show="viewTimeInput" class="form-group" ng-class="{ 'has-error' : errors['time'] }">
+        <label for="txtTime">Time:</label>
+        <input type="text" id="txtTime" class="form-control" placeholder="YYYY-MM-DD hh:mm:ss TIMEZONE"
+               ng-model="currentAnnouncement.time" />
+        <p class="help-block" ng-show="errors['time']"> {{ errors['time'] }} </p>
+    </div>
+
+    <div class="form-group">
+        <label for="screen">Screen</label>
+        <select name="screen" id="screen" class="form-control" 
+                ng-model="currentAnnouncement.screen.id"
+                ng-options="screen.id as screen.title for screen in screens" >
+        </select>
+    </div>
+    
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button class="btn btn-primary" ng-click="save(currentAnnouncement)">Save</button>
+        <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+    </div>
+</div>
