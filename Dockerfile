@@ -3,7 +3,7 @@ MAINTAINER servicedesk.domain.com
 #Command to build from current (cloned) directory where Dockerfile is located:
 #docker build . -t servicedesk-wallscreen:0.0.1
 #Command to run the container:
-#docker run -d -ti --name=sd-wallscreen-app servicedesk-wallscreen:0.0.1
+#docker run -d -ti -p 8800:8800 --name=sd-wallscreen-app t3rmin41/servicedesk-wallscreen:0.0.1
 
 # Create app directory
 RUN mkdir -p /usr/lib/servicedesk-wallscreen
