@@ -17,20 +17,14 @@ import com.domain.servicedesk.wallscreen.security.SecurityConfig;
 
 @SpringBootApplication
 @Import({ApplicationConfig.class, MvcConfig.class, JpaConfig.class, SwaggerConfig.class, SecurityConfig.class})
-public class WallScreenApp { // extends SpringBootServletInitializer {
+public class WallScreenApp {
   
   private static Logger log = LoggerFactory.getLogger(WallScreenApp.class);
-
-  //for traditional .war deployment need to extend SpringBootServletInitializer
-  //@Override
-  //protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-  //    return application.sources(WallScreenApp.class);
-  //}
 
   public static void main(String[] args) {
     SpringApplication springApplication = new SpringApplication(WallScreenApp.class);
     ApplicationContext context = springApplication.run(args);
-    log.info("Context : " + context.getId());
+    log.warn("Context : " + context.getId());
   }
   
 }

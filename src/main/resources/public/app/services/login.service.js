@@ -20,8 +20,8 @@
         url: '/users/login',
         method: 'POST',
         data: credentials,
-        headers : {
-          "Content-Type" : "application/x-www-form-urlencoded;charset=UTF-8"
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8"
         }
       }).success(success).error(error);
     }
